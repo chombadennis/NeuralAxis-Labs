@@ -135,166 +135,164 @@ const Contact = () => {
           Contact Us
         </Typography>
 
-        <Grid container spacing={5} alignItems="stretch">
-          {/* Left Side: Contact Information Cards */}
-          <Grid item xs={12} md={5}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, height: '100%', justifyContent: 'center' }}>
-              {contactDetails.map((detail, idx) => {
-                const isEmail = !!detail.link;
-                const CardComponent = isEmail ? 'a' : Box;
-                const cardProps = isEmail ? { href: detail.link, style: { textDecoration: 'none' } } : {};
+        <Grid container spacing={4} justifyContent="center" sx={{ mb: 6 }}>
+          {contactDetails.map((detail, idx) => {
+            const isEmail = !!detail.link;
+            const CardComponent = isEmail ? 'a' : Box;
+            const cardProps = isEmail ? { href: detail.link, style: { textDecoration: 'none' } } : {};
 
-                return (
-                  <Paper
-                    component={CardComponent}
-                    {...cardProps}
-                    key={idx}
-                    sx={{
-                      p: 3,
-                      display: 'flex',
-                      gap: 3,
-                      alignItems: 'flex-start',
-                      background: 'rgba(15, 18, 37, 0.4)',
-                      backdropFilter: 'blur(12px)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        borderColor: 'rgba(0, 242, 254, 0.3)',
-                        boxShadow: '0 8px 25px rgba(0, 242, 254, 0.12)'
-                      }
-                    }}
-                  >
-                    <Box sx={{ p: 1.5, borderRadius: '12px', background: 'rgba(0, 242, 254, 0.08)', display: 'flex' }}>
-                      {detail.icon}
-                    </Box>
-                    <Box>
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5, fontFamily: 'Lora, serif', fontSize: { xs: '1.05rem', sm: '1.15rem' }, color: '#fff' }}>
-                        {detail.title}
-                      </Typography>
-                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, fontFamily: 'Lexend, sans-serif', fontSize: { xs: '0.85rem', sm: '0.9rem' }, color: '#00F2FE' }}>
-                        {detail.value}
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: 'Inter, sans-serif', fontSize: { xs: '0.8rem', sm: '0.85rem' }, lineHeight: 1.5 }}>
-                        {detail.desc}
-                      </Typography>
-                    </Box>
-                  </Paper>
-                );
-              })}
-            </Box>
-          </Grid>
-
-          {/* Right Side: The Contact Form */}
-          <Grid item xs={12} md={7}>
-            <Paper
-              sx={{
-                p: { xs: 3, sm: 5 },
-                background: 'rgba(15, 18, 37, 0.2)',
-                backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  mb: 4,
-                  color: 'text.secondary',
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: { xs: '0.95rem', sm: '1rem' }
-                }}
-              >
-                Have a project in mind, want to collaborate, or consult with us? Submit the form below and we will get back to you shortly.
-              </Typography>
-              <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
-                <TextField
-                  fullWidth
-                  label="Name"
-                  variant="outlined"
-                  margin="normal"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  error={!!errors.name}
-                  helperText={errors.name}
+            return (
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={idx}>
+                <Paper
+                  component={CardComponent}
+                  {...cardProps}
                   sx={{
-                    input: { color: '#fff', fontFamily: 'Inter, sans-serif' },
-                    label: { color: 'text.secondary' },
-                    mb: { xs: 2, sm: 3 },
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  label="Email"
-                  variant="outlined"
-                  margin="normal"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  error={!!errors.email}
-                  helperText={errors.email}
-                  sx={{
-                    input: { color: '#fff', fontFamily: 'Inter, sans-serif' },
-                    label: { color: 'text.secondary' },
-                    mb: { xs: 2, sm: 3 },
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  label="Message"
-                  variant="outlined"
-                  margin="normal"
-                  multiline
-                  rows={4}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  error={!!errors.message}
-                  helperText={errors.message}
-                  sx={{
-                    textarea: { color: '#fff', fontFamily: 'Inter, sans-serif' },
-                    label: { color: 'text.secondary' },
-                    mb: { xs: 2, sm: 3 },
-                  }}
-                />
-                <Button
-                  variant="contained"
-                  size="large"
-                  fullWidth
-                  sx={{
-                    mt: 3,
-                    py: 1.5,
-                    fontSize: { xs: '1rem', sm: '1.1rem' },
-                    fontFamily: 'Lexend, sans-serif',
-                    fontWeight: 600,
-                    background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
-                    color: '#ffffff',
-                    boxShadow: '0 4px 20px rgba(230, 126, 34, 0.3)',
+                    p: 3,
+                    display: 'flex',
+                    gap: 3,
+                    alignItems: 'flex-start',
+                    background: 'rgba(15, 18, 37, 0.4)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    height: '100%',
                     '&:hover': {
-                      background: 'linear-gradient(135deg, #D35400 0%, #E67E22 100%)',
-                      boxShadow: '0 6px 24px rgba(230, 126, 34, 0.5)',
-                      transform: 'translateY(-2px)',
-                    },
-                    '&.Mui-disabled': {
-                      background: 'rgba(230, 126, 34, 0.15)',
-                      color: 'rgba(255, 255, 255, 0.3)',
-                      borderColor: 'rgba(230, 126, 34, 0.2)',
-                      boxShadow: 'none',
+                      transform: 'translateY(-4px)',
+                      borderColor: 'rgba(0, 242, 254, 0.3)',
+                      boxShadow: '0 8px 25px rgba(0, 242, 254, 0.12)'
                     }
                   }}
-                  type="submit"
-                  disabled={!isFormValid || loading}
                 >
-                  {loading ? <CircularProgress size={24} color="inherit" /> : 'Send Message'}
-                </Button>
-              </Box>
-            </Paper>
-          </Grid>
+                  <Box sx={{ p: 1.5, borderRadius: '12px', background: 'rgba(0, 242, 254, 0.08)', display: 'flex' }}>
+                    {detail.icon}
+                  </Box>
+                  <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5, fontFamily: 'Lora, serif', fontSize: { xs: '1.05rem', sm: '1.15rem' }, color: '#fff' }}>
+                      {detail.title}
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, fontFamily: 'Lexend, sans-serif', fontSize: { xs: '0.85rem', sm: '0.9rem' }, color: '#00F2FE' }}>
+                      {detail.value}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: 'Inter, sans-serif', fontSize: { xs: '0.8rem', sm: '0.85rem' }, lineHeight: 1.5 }}>
+                      {detail.desc}
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Grid>
+            );
+          })}
         </Grid>
+
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Paper
+            sx={{
+              p: { xs: 3, sm: 5 },
+              width: '100%',
+              maxWidth: '750px',
+              background: 'rgba(15, 18, 37, 0.2)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                color: 'text.secondary',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: { xs: '0.95rem', sm: '1rem' },
+                textAlign: 'center'
+              }}
+            >
+              Have a project in mind, want to collaborate, or consult with us? Submit the form below and we will get back to you shortly.
+            </Typography>
+            <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
+              <TextField
+                fullWidth
+                label="Name"
+                variant="outlined"
+                margin="normal"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                error={!!errors.name}
+                helperText={errors.name}
+                sx={{
+                  input: { color: '#fff', fontFamily: 'Inter, sans-serif' },
+                  label: { color: 'text.secondary' },
+                  mb: { xs: 2, sm: 3 },
+                }}
+              />
+              <TextField
+                fullWidth
+                label="Email"
+                variant="outlined"
+                margin="normal"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                error={!!errors.email}
+                helperText={errors.email}
+                sx={{
+                  input: { color: '#fff', fontFamily: 'Inter, sans-serif' },
+                  label: { color: 'text.secondary' },
+                  mb: { xs: 2, sm: 3 },
+                }}
+              />
+              <TextField
+                fullWidth
+                label="Message"
+                variant="outlined"
+                margin="normal"
+                multiline
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                error={!!errors.message}
+                helperText={errors.message}
+                sx={{
+                  textarea: { color: '#fff', fontFamily: 'Inter, sans-serif' },
+                  label: { color: 'text.secondary' },
+                  mb: { xs: 2, sm: 3 },
+                }}
+              />
+              <Button
+                variant="contained"
+                size="large"
+                fullWidth
+                sx={{
+                  mt: 3,
+                  py: 1.5,
+                  fontSize: { xs: '1rem', sm: '1.1rem' },
+                  fontFamily: 'Lexend, sans-serif',
+                  fontWeight: 600,
+                  background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
+                  color: '#ffffff',
+                  boxShadow: '0 4px 20px rgba(230, 126, 34, 0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #D35400 0%, #E67E22 100%)',
+                    boxShadow: '0 6px 24px rgba(230, 126, 34, 0.5)',
+                    transform: 'translateY(-2px)',
+                  },
+                  '&.Mui-disabled': {
+                    background: 'rgba(230, 126, 34, 0.15)',
+                    color: 'rgba(255, 255, 255, 0.3)',
+                    borderColor: 'rgba(230, 126, 34, 0.2)',
+                    boxShadow: 'none',
+                  }
+                }}
+                type="submit"
+                disabled={!isFormValid || loading}
+              >
+                {loading ? <CircularProgress size={24} color="inherit" /> : 'Send Message'}
+              </Button>
+            </Box>
+          </Paper>
+        </Box>
 
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>

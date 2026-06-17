@@ -35,7 +35,7 @@ const About = () => {
     >
       <Box sx={{ maxWidth: '1200px', mx: 'auto' }}>
         <Grid container spacing={6} alignItems="center">
-          <Grid item xs={12} md={5}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <Box sx={{ position: 'relative' }}>
               <Typography
                 variant="overline"
@@ -88,10 +88,10 @@ const About = () => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={7}>
+          <Grid size={{ xs: 12, md: 7 }}>
             <Grid container spacing={3}>
               {highlights.map((item, idx) => (
-                <Grid item xs={12} sm={6} md={12} key={idx}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }} key={idx}>
                   <Paper
                     sx={{
                       p: 3,

@@ -11,11 +11,12 @@ const dummyProjects = [
   { id: 1, name: 'DevCollab Hub', description: 'A resource integration and collaboration environment designed to connect distributed developer teams.', tags: ['Collaboration Platforms', 'Resource Integration'], imageUrl: '/images/collaboration_hub.png' },
   { id: 2, name: 'FieldOps Platform', description: 'A construction operations platform focusing on revenue tracking, BOQ integration and automated progress tracking.', tags: ['Operations Systems', 'BOQ Analysis'], imageUrl: '/images/fieldops_revenue.png' },
   { id: 3, name: 'Makindu AHP Aggregator', description: 'Enterprise reporting intelligence system that processes site logs, correspondence registers and computes revenue with work progress.', tags: ['Construction Site Intelligence', 'Analytics'], imageUrl: '/images/makindu_ahp.png' },
-  { id: 4, name: 'Logistics Fleet Dispatcher', description: 'A live fleet management dashboard for driver dispatching and cargo logistics.', tags: ['Operations & Logistics', 'Real-Time Sync'], imageUrl: '/images/logistics_fleet.png' }
+  { id: 4, name: 'Logistics Fleet Dispatcher', description: 'A live fleet management dashboard for driver dispatching and cargo logistics.', tags: ['Operations & Logistics', 'Real-Time Sync'], imageUrl: '/images/logistics_fleet.png' },
+  { id: 5, name: 'Interactive Professional Portfolio Platform', description: 'A premium full-stack showcase and presentation application designed for professionals to highlight expertise. Features interactive user engagement components, secure content management tools, and dynamic asset presentation fields.', tags: ['Professional Showcases', 'Content Management', 'Interactive Platforms'], imageUrl: '/images/portfolio_platform.png' }
 ];
 
-const INITIAL_VISIBLE_PROJECTS = 2;
-const PROJECTS_INCREMENT = 2;
+const INITIAL_VISIBLE_PROJECTS = 3;
+const PROJECTS_INCREMENT = 3;
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -71,10 +72,10 @@ const Projects = () => {
         >
           Featured Projects
         </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           {loading ? (
             Array.from(new Array(3)).map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <Skeleton variant="rectangular" width="100%" height={200} sx={{ bgcolor: 'grey.900' }} />
                 <Skeleton width="60%" sx={{ bgcolor: 'grey.900' }} />
                 <Skeleton sx={{ bgcolor: 'grey.900' }} />
@@ -82,7 +83,7 @@ const Projects = () => {
             ))
           ) : (
             projects.slice(0, visibleProjects).map((project) => (
-              <Grid item key={project.id} xs={12} sm={6} md={4}>
+              <Grid key={project.id} size={{ xs: 12, sm: 6, md: 4 }}>
                 <ProjectCard project={project} />
               </Grid>
             ))

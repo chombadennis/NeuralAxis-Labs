@@ -16,6 +16,9 @@ const ProjectCard = ({ project }) => {
       boxShadow: '0 4px 30px rgba(0, 0, 0, 0.4)',
       transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease',
       overflow: 'hidden',
+      maxWidth: 'none',
+      width: '100%',
+      mx: 'auto',
       '&:hover': {
         transform: 'translateY(-6px)',
         borderColor: 'rgba(0, 242, 254, 0.4)',
@@ -25,7 +28,8 @@ const ProjectCard = ({ project }) => {
       <CardMedia
         component="img"
         sx={{ 
-          height: { xs: 150, sm: 180 },
+          height: (project.id === 4 || project.id === 5) ? { xs: 200, sm: 240, md: 260 } : { xs: 150, sm: 180 },
+          objectFit: 'cover',
           filter: 'brightness(0.9)',
           transition: 'transform 0.5s ease',
           '&:hover': {
