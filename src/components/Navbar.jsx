@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from '../auth/Auth';
 
 const navItems = [
@@ -109,28 +110,88 @@ const Navbar = () => {
   );
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', background: '#1a1a1a', height: '100%' }}>
-      <List>
+    <Box sx={{ background: '#0F1225', height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {/* Header with logo & Close Button */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 2, borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <img src="/images/neuralaxis-logo.png" alt="NeuralAxis Labs Logo" style={{ height: '30px', marginRight: '8px' }} />
+          <Typography variant="subtitle1" sx={{ color: '#fff', fontWeight: 700, fontFamily: 'Outfit, sans-serif' }}>
+            NeuralAxis
+          </Typography>
+        </Box>
+        <IconButton onClick={handleDrawerToggle} edge="end" sx={{ color: '#fff' }}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      {/* Nav List */}
+      <List sx={{ pt: 2, flexGrow: 1 }}>
         {navItems.map((item) => {
           const isHomePage = location.pathname === '/';
           const isHomeButton = item.name === 'Home';
 
           const linkProps = isHomeButton && !isHomePage
-            ? { component: RouterLink, to: '/' }
-            : { component: ScrollLink, to: item.to, smooth: true, duration: 500, spy: true, offset: -70 };
+            ? { component: RouterLink, to: '/', onClick: handleDrawerToggle }
+            : { component: ScrollLink, to: item.to, smooth: true, duration: 500, spy: true, offset: -70, onClick: handleDrawerToggle };
 
           return (
-            <ListItem key={item.name} disablePadding>
-              <ListItemButton {...linkProps} sx={{ textAlign: 'center' }}>
-                <ListItemText primary={item.name} sx={{ color: '#fff' }} />
+            <ListItem key={item.name} disablePadding sx={{ mb: 1 }}>
+              <ListItemButton 
+                {...linkProps} 
+                sx={{ 
+                  textAlign: 'left', 
+                  px: 3,
+                  py: 1.5,
+                  borderRadius: '8px',
+                  mx: 1.5,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: 'rgba(0, 242, 254, 0.08)',
+                    color: '#00F2FE',
+                  },
+                  '&.active': {
+                    background: 'rgba(0, 242, 254, 0.1)',
+                    color: '#00F2FE',
+                    borderLeft: '4px solid #00F2FE',
+                  }
+                }}
+              >
+                <ListItemText 
+                  primary={item.name} 
+                  primaryTypographyProps={{ 
+                    fontSize: '1.05rem', 
+                    fontWeight: 600, 
+                    fontFamily: 'Lexend, sans-serif' 
+                  }} 
+                />
               </ListItemButton>
             </ListItem>
           );
         })}
         {currentUser && isProtectedPage && (
-          <ListItem disablePadding>
-            <ListItemButton onClick={handleLogout} sx={{ textAlign: 'center' }}>
-              <ListItemText primary="Sign Out" sx={{ color: '#fff' }} />
+          <ListItem disablePadding sx={{ mb: 1 }}>
+            <ListItemButton 
+              onClick={() => { handleLogout(); handleDrawerToggle(); }} 
+              sx={{ 
+                textAlign: 'left', 
+                px: 3, 
+                py: 1.5,
+                borderRadius: '8px',
+                mx: 1.5,
+                '&:hover': {
+                  background: 'rgba(230, 126, 34, 0.08)',
+                  color: '#E67E22',
+                }
+              }}
+            >
+              <ListItemText 
+                primary="Sign Out" 
+                primaryTypographyProps={{ 
+                  fontSize: '1.05rem', 
+                  fontWeight: 600, 
+                  fontFamily: 'Lexend, sans-serif' 
+                }} 
+              />
             </ListItemButton>
           </ListItem>
         )}
