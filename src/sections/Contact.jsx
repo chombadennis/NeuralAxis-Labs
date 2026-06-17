@@ -99,7 +99,7 @@ const Contact = () => {
     <Box
       id="contact"
       sx={{
-        py: { xs: 8, sm: 12 },
+        py: { xs: 5, sm: 8 },
         background: 'linear-gradient(180deg, #0B0E1F 0%, #070913 100%)',
         color: '#fff',
         px: { xs: 2, sm: 3, md: 4 }

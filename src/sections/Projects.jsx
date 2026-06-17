@@ -42,7 +42,7 @@ const Projects = () => {
   };
 
   return (
-    <Box id="projects" sx={{ py: { xs: 8, sm: 12 }, background: 'linear-gradient(180deg, #080A16 0%, #0B0E1F 100%)', color: '#fff', px: { xs: 2, sm: 3, md: 4 } }}>
+    <Box id="projects" sx={{ py: { xs: 5, sm: 8 }, background: 'linear-gradient(180deg, #080A16 0%, #0B0E1F 100%)', color: '#fff', px: { xs: 2, sm: 3, md: 4 } }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto' }}>
         <Typography
           variant="overline"
