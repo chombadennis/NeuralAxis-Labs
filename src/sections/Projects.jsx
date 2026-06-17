@@ -8,13 +8,10 @@ import { scroller } from 'react-scroll';
 
 // Dummy data for fallback
 const dummyProjects = [
-  { id: 1, name: 'AI Chatbot', description: 'A conversational AI for customer support', tags: ['AI', 'NLP'], imageUrl: '/images/bot.png' },
-  { id: 2, name: 'Data Visualization Dashboard', description: 'An interactive dashboard for complex datasets', tags: ['Data Analysis', 'React'], imageUrl: '/images/data.png' },
-  { id: 3, name: 'E-commerce Website', description: 'A full-featured online store', tags: ['Web Dev', 'Firebase'], imageUrl: '/images/ecom.png' },
-  { id: 4, name: 'Predictive Maintenance Model', description: 'A model to predict machine failures', tags: ['ML', 'Python'], imageUrl: '/images/model.png' },
-  { id: 5, name: 'Project 5', description: 'Description for project 5', tags: ['TagA', 'TagB'], imageUrl: '/images/model.png' },
-  { id: 6, name: 'Project 6', description: 'Description for project 6', tags: ['TagC', 'TagD'], imageUrl: '/images/model.png' },
-  { id: 7, name: 'Project 7', description: 'Description for project 7', tags: ['TagE', 'TagF'], imageUrl: '/images/model.png' },
+  { id: 1, name: 'DevCollab Hub', description: 'A resource integration and collaboration environment designed to connect distributed developer teams.', tags: ['Collaboration Platforms', 'Resource Integration'], imageUrl: '/images/collaboration_hub.png' },
+  { id: 2, name: 'FieldOps Platform', description: 'A construction operations platform focusing on revenue tracking, BOQ integration and automated progress tracking.', tags: ['Operations Systems', 'BOQ Analysis'], imageUrl: '/images/fieldops_revenue.png' },
+  { id: 3, name: 'Makindu AHP Aggregator', description: 'Enterprise reporting intelligence system that processes site logs, correspondence registers and computes revenue with work progress.', tags: ['Construction Site Intelligence', 'Analytics'], imageUrl: '/images/makindu_ahp.png' },
+  { id: 4, name: 'Logistics Fleet Dispatcher', description: 'A live fleet management dashboard for driver dispatching and cargo logistics.', tags: ['Operations & Logistics', 'Real-Time Sync'], imageUrl: '/images/logistics_fleet.png' }
 ];
 
 const INITIAL_VISIBLE_PROJECTS = 2;
@@ -26,40 +23,8 @@ const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(INITIAL_VISIBLE_PROJECTS);
 
   useEffect(() => {
-    const loadProjects = async () => {
-      setLoading(true);
-      const cachedProjects = sessionStorage.getItem('projectsData');
-
-      if (cachedProjects) {
-        console.log("Loading projects from session cache.");
-        setProjects(JSON.parse(cachedProjects));
-        setLoading(false);
-      } else {
-        console.log("Fetching projects from Firestore.");
-        try {
-          const querySnapshot = await getDocs(collection(db, "projects"));
-          let projectsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-          if (projectsData.length > 0) {
-            const formattedProjects = projectsData.map(project => ({
-              ...project,
-              imageUrl: `https://firebasestorage.googleapis.com/v0/b/neuralaxis-labs.firebasestorage.app/o/${encodeURIComponent(project.imageUrl)}?alt=media`
-            }));
-            setProjects(formattedProjects);
-            sessionStorage.setItem('projectsData', JSON.stringify(formattedProjects));
-          } else {
-            console.log("No projects found in Firestore, using fallback data.");
-            setProjects(dummyProjects);
-          }
-        } catch (error) {
-          console.error("Error fetching projects: ", error);
-          setProjects(dummyProjects);
-        }
-        setLoading(false);
-      }
-    };
-
-    loadProjects();
+    setProjects(dummyProjects);
+    setLoading(false);
   }, []);
 
   const handleShowMore = () => {
@@ -76,21 +41,37 @@ const Projects = () => {
   };
 
   return (
-    <Box id="projects" sx={{ py: { xs: 6, sm: 8 }, background: '#1a1a1a', color: '#fff', px: { xs: 2, sm: 3, md: 4 } }}>
+    <Box id="projects" sx={{ py: { xs: 8, sm: 12 }, background: 'linear-gradient(180deg, #080A16 0%, #0B0E1F 100%)', color: '#fff', px: { xs: 2, sm: 3, md: 4 } }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto' }}>
-        <Typography 
-          variant="h4" 
-          component="h2" 
-          gutterBottom 
-          align="center" 
-          sx={{ 
-            fontWeight: 'bold',
-            fontSize: { xs: '2rem', sm: '2.5rem' } 
+        <Typography
+          variant="overline"
+          align="center"
+          sx={{
+            color: '#00F2FE',
+            fontWeight: 700,
+            letterSpacing: '0.15em',
+            fontFamily: 'Lexend, sans-serif',
+            display: 'block',
+            mb: 1
           }}
         >
-          Our Projects
+          OUR PORTFOLIO
         </Typography>
-        <Grid container spacing={4} sx={{ mt: { xs: 2, sm: 4 } }}>
+        <Typography
+          variant="h3"
+          component="h2"
+          gutterBottom
+          align="center"
+          sx={{
+            fontWeight: 800,
+            fontFamily: 'Lora, serif',
+            fontSize: { xs: '2rem', sm: '2.5rem' },
+            mb: 6
+          }}
+        >
+          Featured Projects
+        </Typography>
+        <Grid container spacing={4}>
           {loading ? (
             Array.from(new Array(3)).map((item, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>

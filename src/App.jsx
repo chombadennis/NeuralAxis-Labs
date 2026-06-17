@@ -10,29 +10,32 @@ import PolicyPage from './pages/Policy';
 import TermsPage from './pages/Terms';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { CssBaseline, Box } from '@mui/material';
+import { CssBaseline, Box, ThemeProvider } from '@mui/material';
+import theme from './theme';
 import './App.css';
 
 function App() {
   return (
-    <AuthProvider>
-      <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Navbar />
-        <Box component="main" sx={{ flexGrow: 1, pt: { xs: '56px', sm: '64px' } }}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/signin" element={<AuthPage />} />
-            <Route path="/signup" element={<AuthPage />} />
-            <Route path="/confirm" element={<Confirmation />} />
-            <Route path="/policy" element={<PolicyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/dcadmin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
-          </Routes>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <CssBaseline />
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default', color: 'text.primary' }}>
+          <Navbar />
+          <Box component="main" sx={{ flexGrow: 1, pt: { xs: '56px', sm: '64px' } }}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/signin" element={<AuthPage />} />
+              <Route path="/signup" element={<AuthPage />} />
+              <Route path="/confirm" element={<Confirmation />} />
+              <Route path="/policy" element={<PolicyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/dcadmin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+            </Routes>
+          </Box>
+          <Footer />
         </Box>
-        <Footer />
-      </Box>
-    </AuthProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

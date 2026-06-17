@@ -58,7 +58,7 @@ const Navbar = () => {
                 mx: 1, 
                 fontSize: '1rem',
                 '&.active': {
-                  borderBottom: '2px solid #9c27b0',
+                  borderBottom: '2px solid #00F2FE',
                 }
               }}
             >
@@ -94,7 +94,7 @@ const Navbar = () => {
               mx: 1, 
               fontSize: '1rem',
               '&.active': {
-                borderBottom: '2px solid #9c27b0',
+                borderBottom: '2px solid #00F2FE',
               }
             }}
           >
@@ -140,12 +140,12 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background: '#1a1a1a', boxShadow: 'none' }}>
+      <AppBar position="fixed" sx={{ background: 'rgba(8, 10, 22, 0.8)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', boxShadow: 'none' }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
             <RouterLink to="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
               <img src="/images/neuralaxis-logo.png" alt="NeuralAxis Labs Logo" style={{ height: isMobile ? '30px' : '40px', marginRight: '10px' }} />
-              <Typography variant="h6" sx={{ color: '#fff', fontSize: isMobile ? '1rem' : '1.25rem' }}>
+              <Typography variant="h6" sx={{ color: '#fff', fontSize: isMobile ? '1rem' : '1.25rem', fontFamily: 'Outfit, sans-serif', fontWeight: 700 }}>
                 NeuralAxis Labs
               </Typography>
             </RouterLink>
@@ -174,7 +174,7 @@ const Navbar = () => {
           }}
           sx={{ 
             display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240, background: '#1a1a1a' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240, background: '#0F1225', borderLeft: '1px solid rgba(255, 255, 255, 0.1)' },
           }}
         >
           {drawer}
